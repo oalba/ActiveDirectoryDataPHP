@@ -46,7 +46,7 @@
 
 				$server = "ldap://192.168.101.249";
 				$user = "actived@magni.local";
-				$psw = "Hangar18";
+				$psw = "********";
 				$dn = "OU=MAGNI Users,DC=magni,DC=local";
 				$search = "CN=*";
 
