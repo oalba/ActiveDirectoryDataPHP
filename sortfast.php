@@ -29,7 +29,7 @@
 		<?php 
 		$server = "ldap://192.168.101.249";
 			$user = "actived@magni.local";
-			$psw = "Hangar18";
+			$psw = "********";
 			$dn = "OU=MAGNI Users,DC=magni,DC=local";
 			$search = "CN=*";
 
@@ -93,6 +93,16 @@
 						(isset($data[$i]["department"][0])&&preg_match('/'.strtolower($dato).'/',strtolower($data[$i]["department"][0]))) or 
 						(isset($data[$i]["telephonenumber"][0])&&preg_match('/'.$dato.'/',$data[$i]["telephonenumber"][0])) or 
 						(isset($data[$i]["mail"][0])&&preg_match('/'.strtolower($dato).'/',strtolower($data[$i]["mail"][0]))))){
+						
+						//$user = $data[$i]["cn"][0];
+						//$user_info=$ds->info($user,array("useraccountcontrol"));
+						//$enabled = (($user_info[0]['useraccountcontrol'][0] & 2) == 0);
+						//echo "Account Status: ".$data[$i]["useraccountcontrol"][0]."<br>\n";
+						if (isset($data[$i]["useraccountcontrol"][0])) {
+						if (($data[$i]["useraccountcontrol"][0] & 2) == 0) {
+						//if ((($data[$i]["useraccountcontrol"][0] != 546))) {
+						
+
 						echo "<tr "; 
 						if ($num_fila%2==0) 
 							echo "bgcolor=#F2F2F2";
@@ -129,6 +139,7 @@
 							
 						echo "</tr>";
 						$num_fila++;
+						}}
 					}else echo "";
 				}
 				echo "<div style=\"float:left\">Found ".$num_fila." entries</div><br/><br/><br/></table>";
